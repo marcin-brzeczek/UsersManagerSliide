@@ -1,0 +1,90 @@
+ext {
+
+    MIN_SDK = 21
+    TARGET_SDK = 30
+
+    KOTLIN_VERSION = '1.5.31'
+    GRADLE_VERSION = '7.0.2'
+    JUNIT_PLUGIN_VERSION = '1.8.0.0'
+
+    // AndroidX
+    def annotation_version = '1.2.0'
+    def androidx_core = '1.6.0'
+    def androidx_appcompat = '1.3.0'
+    def constraint_layout_version = '1.1.3'
+    def lifecycle_version = '2.3.1'
+    def paging_version = '2.1.2'
+    def recyclerview_version = '1.1.0'
+
+    androidx = [
+            annotation         : "androidx.annotation:annotation:$annotation_version",
+            appcompat          : "androidx.appcompat:appcompat:$androidx_appcompat",
+            corektx            : "androidx.core:core-ktx:$androidx_core",
+            constraintlayout   : "androidx.constraintlayout:constraintlayout:$constraint_layout_version",
+            lifecycle_view_model: "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+            paging             : "androidx.paging:paging-runtime-ktx:$paging_version",
+            recyclerview       : "androidx.recyclerview:recyclerview:$recyclerview_version",
+    ]
+
+    // Google Material
+    google = [
+            material            : "com.google.android.material:material:1.0.0",
+    ]
+
+    // Third party libs
+    def binding_collection = '4.0.0'
+    def dagger2 = '2.38.1'
+    def logger = '4.7.1'
+    def moshi = '1.12.0'
+    def network_log = '4.2.1'
+    def retrofit = '2.6.1'
+    def rxjava2 = '2.2.12'
+    def rxandroid = '2.1.1'
+    def rxKotlin = '2.4.0'
+    def lottie = '3.4.4'
+
+    deps = [
+            binding_paging         : "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-paging:$binding_collection",
+            binding_adapter        : "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:$binding_collection",
+            binding_recyler        : "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:$binding_collection",
+            dagger2_runtime        : "com.google.dagger:dagger:$dagger2",
+            dagger2_android        : "com.google.dagger:dagger-android:$dagger2",
+            dagger2_android_support: "com.google.dagger:dagger-android-support:$dagger2",
+            dagger2_annotation     : "javax.inject:javax.inject:1",
+            logger                 : "com.jakewharton.timber:timber:$logger",
+            moshi                  : "com.squareup.moshi:moshi-kotlin:$moshi",
+            netowrk1               : "com.squareup.retrofit2:converter-moshi:$retrofit",
+            network2               : "com.squareup.retrofit2:adapter-rxjava2:$retrofit",
+            network_log            : "com.squareup.okhttp3:logging-interceptor:$network_log",
+            rxjava2                : "io.reactivex.rxjava2:rxjava:$rxjava2",
+            rxandroid              : "io.reactivex.rxjava2:rxandroid:$rxandroid",
+            rxKotlin               : "io.reactivex.rxjava2:rxkotlin:$rxKotlin",
+            lottie                 : "com.airbnb.android:lottie:$lottie"
+    ]
+
+    deps_kapt = [
+            moshi            : "com.squareup.moshi:moshi-kotlin-codegen:${moshi}",
+            dagger2_compiler : "com.google.dagger:dagger-compiler:${dagger2}",
+            dagger2_processor: "com.google.dagger:dagger-android-processor:${dagger2}",
+    ]
+
+    // Tests
+        junit5 = '5.8.1'
+    def androidxtest = '1.3.0'
+    def junit5_plugin = "1.3.0"
+    deps_test = [
+            runner    : "androidx.test:runner:${androidxtest}",
+            test      : "androidx.test:core:${androidxtest}",
+            androidx  : "androidx.test.ext:junit-ktx:1.1.2",
+            junit     : "org.junit.jupiter:junit-jupiter-api:${junit5}",
+            junitParms: "org.junit.jupiter:junit-jupiter-params:${junit5}",
+            mockk     : "io.mockk:mockk:1.10.0",
+    ]
+    deps_android_test = [
+            runner      : "androidx.test:runner:${androidxtest}",
+            junit       : "org.junit.jupiter:junit-jupiter-api:${junit5}",
+            junit_plugin: "de.mannodermaus.junit5:android-test-core:${junit5_plugin}",
+    ]
+    junit5_engine_runtime = "org.junit.jupiter:junit-jupiter-engine:${junit5}"
+    junit5_plugin_runner = "de.mannodermaus.junit5:android-test-runner:${junit5_plugin}"
+}

@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'de.mannodermaus.android-junit5'
+apply from: '../dependencies.gradle'
+
+android {
+    compileSdkVersion TARGET_SDK
+
+    defaultConfig {
+        applicationId "com.mbitsystem.sliide.usersmanager"
+        minSdkVersion MIN_SDK
+        targetSdkVersion TARGET_SDK
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArgument "runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder"
+
+        def apiPropertiesFile = rootProject.file("gorest.properties")
+        def apiProperties = new Properties()
+        apiProperties.load(new FileInputStream(apiPropertiesFile))
+
+        buildConfigField "String", "BASE_URL", "\"https://gorest.co.in\""
+        buildConfigField("String", "GOREST_API_KEY",  "\"${apiProperties['gorest_api_key']}\"")
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+        freeCompilerArgs += ['-Xsam-conversions=class',]
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+
+    lintOptions {
+        checkDependencies true
+        disable 'NullSafeMutableLiveData'
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation androidx.values()
+    implementation google.values()
+    implementation deps.values()
+
+    kapt deps_kapt.moshi
+    kapt deps_kapt.dagger2_compiler
+    kapt deps_kapt.dagger2_processor
+
+    testImplementation deps_test.values()
+    androidTestImplementation deps_android_test.values()
+    testRuntimeOnly junit5_engine_runtime
+    androidTestRuntimeOnly junit5_plugin_runner
+}

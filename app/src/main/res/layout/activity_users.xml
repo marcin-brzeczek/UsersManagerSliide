@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mbitsystem.sliide.usersmanager.presentation.users.UsersViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/greyLight"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:context=".presentation.users.UsersActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/users_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:elevation="@dimen/default_elevation"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/users_toolbar_title" />
+
+        <TextView
+            android:id="@+id/page_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@id/users_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Page: 100" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/users_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
+            app:diffConfig="@{viewModel.userDiff}"
+            app:itemBinding="@{viewModel.itemBinding}"
+            app:items="@{viewModel.pagedList}"
+            app:onBottomReached="@{viewModel.loadMore}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/users_toolbar"
+            tools:listitem="@layout/item_user" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie"
+            android:layout_width="match_parent"
+            visibleOrGone="@{viewModel.state.showProgressBar}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loader.json"
+            app:lottie_loop="true" />
+
+        <Button
+            android:id="@+id/users_reload_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.onReloadDataClicked()}"
+            android:text="@string/users_reload_button_text"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:visibleOrGone="@{viewModel.state.showReloadButton}" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onAddUserClicked()}"
+            app:srcCompat="@drawable/ic_add_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:visibleOrGone="@{!viewModel.state.showReloadButton}"
+            app:useCompatPadding="true"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

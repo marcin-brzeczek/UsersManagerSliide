@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.mbitsystem.sliide.usersmanager.data.model.User" />
+
+        <variable
+            name="userItemClickedListener"
+            type="com.mbitsystem.sliide.usersmanager.presentation.users.UserItemListener" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:background="@color/greySecondary"
+        android:elevation="4dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onLongClick="@{() -> userItemClickedListener.onUserLongClicked(user)}"
+        app:cardCornerRadius="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:text="@{user.displayId}"
+                android:textSize="18sp"
+                tools:text="100" />
+
+        <TextView
+            android:id="@+id/user_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:text="@{user.name}"
+            android:textSize="18sp"
+            tools:text="Simple name" />
+
+        <TextView
+            android:id="@+id/user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:text="@{user.email}"
+            android:textSize="18sp"
+            tools:text="test@test" />
+
+        <TextView
+            android:id="@+id/user_creation_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:text="@{user.status.toString()}"
+            android:textSize="18sp"
+            tools:text="10/10/2021" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

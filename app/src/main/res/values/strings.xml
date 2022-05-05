@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">UsersManager</string>
+    <string name="users_toolbar_title">Users</string>
+    <string name="users_reload_button_text">Reload</string>
+    <string name="users_page_number">Page number: %d</string>
+
+    <string name="add_button_title">Add</string>
+    <string name="ok_button_title">Ok</string>
+
+    <string name="add_user_dialog_title">Add User</string>
+    <string name="add_user_dialog_enter_name">Enter name *</string>
+    <string name="add_user_dialog_enter_email">Enter email *</string>
+    <string name="add_user_dialog_select_gender">Select gender *</string>
+
+    <string name="remove_user_dialog_title">Remove user</string>
+    <string name="remove_user_dialog_subtitle">Are you sure you want to remove this user?</string>
+    <string name="remove_user_dialog_button_confirm">Confirm</string>
+
+    <string name="error_dialog_common_title">Error</string>
+    <string name="error_dialog_common_subtitle">Please try again later</string>
+    <string name="error_dialog_no_internet_subtitle">Check your internet connetion</string>
+    <string name="error_dialog_authorization_subtitle">We can\'t authenticate you right now. Check your permissions.</string>
+    <string name="error_dialog_validation_subtitle">Invalid data. Try again with the correct one.</string>
+    <string name="error_dialog_server_subtitle">Server is unavailable. Please try again later.</string>
+
+    <string name="user_successfully_added_toast">User has been successfully added!</string>
+    <string name="remove_user_dialog_button_cancel">Cancel</string>
+
+    <array name="gender_type">
+        <item>male</item>
+        <item>famale</item>
+    </array>
+</resources>
